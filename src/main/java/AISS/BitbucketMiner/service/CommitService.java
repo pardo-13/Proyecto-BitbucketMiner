@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +27,21 @@ public class CommitService {
         String uri = baseuri + workspace + "/" + repo + "/commits";
         CommitList commitList = restTemplate.getForObject(uri, CommitList.class);
         commits = commitList.getCommitsData();
+        return commits;
+    }
+
+    public List<CommitData> getAllCommits(String workspace, String repo) {
+        List<CommitData> commits = new ArrayList<>();
+        String uri = baseuri + workspace + "/" + repo + "/commits";
+        CommitList commitList = restTemplate.getForObject(uri, CommitList.class);
+        commits.addAll(commitList.getCommitsData());
+        int i = 1;
+        while(commitList.getNext() != null) {
+            i++;
+            uri = baseuri + workspace + "/" + repo + "/commits?page="+ i;
+            commitList = restTemplate.getForObject(uri, CommitList.class);
+            commits.addAll(commitList.getCommitsData());
+        }
         return commits;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,5 +33,18 @@ public class IssueService {
         String uri = baseuri + workspace + "/" + repo + "/issues";
         IssueList issueList = restTemplate.getForObject(uri, IssueList.class);
         return issueList;
+    }
+
+    public List<IssueData> getAllIssues(String workspace, String repo) {
+        List<IssueData> issues = new ArrayList<>();
+        String uri = baseuri + workspace + "/" + repo + "/issues";
+        IssueList issueList = restTemplate.getForObject(uri, IssueList.class);
+        issues.addAll(issueList.getIssuesData());
+        while(issueList.getNext() != null) {
+            uri = issueList.getNext();
+            issueList = restTemplate.getForObject(uri, IssueList.class);
+            issues.addAll(issueList.getIssuesData());
+        }
+        return issues;
     }
 }

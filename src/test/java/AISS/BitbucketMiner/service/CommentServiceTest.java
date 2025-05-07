@@ -18,11 +18,21 @@ class CommentServiceTest {
 
     @Test
     @DisplayName("Get All Comments")
-    void getAllComments() {
+    void getComments() {
         List<CommentData> comments = commentService.getComments("gentlero","bitbucket-api", "87");
         assertNotNull(comments);
         assertFalse(comments.isEmpty());
         System.out.println(comments);
+        System.out.println(comments.size());
+    }
+    @Test
+    @DisplayName("Get All Comments")
+    void getAllComments() {
+        List<CommentData> comments = commentService.getAllComments("gentlero","bitbucket-api", "87");
+        assertNotNull(comments);
+        assertFalse(comments.isEmpty());
+        System.out.println(comments);
+        System.out.println(comments.size());
     }
 
 }

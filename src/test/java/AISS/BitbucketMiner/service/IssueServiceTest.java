@@ -24,6 +24,7 @@ class IssueServiceTest {
         assertNotNull(issues);
         assertFalse(issues.isEmpty());
         System.out.println(issues);
+        System.out.println(issues.size());
     }
 
     @Test
@@ -32,5 +33,14 @@ class IssueServiceTest {
         IssueList issue = issueService.getIssue("gentlero", "bitbucket-api");
         assertNotNull(issue);
         System.out.println(issue);
+    }
+
+    @Test
+    @DisplayName("Get All Issues")
+    void getAllIssue() {
+        List<IssueData> issues = issueService.getAllIssues("gentlero", "bitbucket-api");
+        assertNotNull(issues);
+        System.out.println(issues);
+        System.out.println(issues.size());
     }
 }

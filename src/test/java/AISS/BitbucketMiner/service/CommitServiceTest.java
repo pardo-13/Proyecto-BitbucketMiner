@@ -23,5 +23,16 @@ class CommitServiceTest {
         assertNotNull(commits);
         assertFalse(commits.isEmpty());
         System.out.println(commits);
+        System.out.println(commits.size());
+    }
+
+    @Test
+    @DisplayName("Get All Commits")
+    void getAllCommits() {
+        List<CommitData> commits = commitService.getAllCommits("gentlero", "bitbucket-api");
+        assertNotNull(commits);
+        assertFalse(commits.isEmpty());
+        System.out.println(commits);
+        System.out.println(commits.size());
     }
 }
