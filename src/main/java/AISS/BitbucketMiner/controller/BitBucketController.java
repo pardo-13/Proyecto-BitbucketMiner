@@ -19,7 +19,7 @@ public class BitBucketController {
     @Autowired
     public BitBucketController(Transformation transformation) { this.transformation = transformation; }
 
-    private final String gitMinerUri = "http://localhost:8080";
+    private final String gitMinerUri = "http://localhost:8080/gitminer/projects";
 
 
     //GET http://localhost:8081/bitbucket/workspace/repo
