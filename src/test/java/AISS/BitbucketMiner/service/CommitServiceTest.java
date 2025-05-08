@@ -19,7 +19,7 @@ class CommitServiceTest {
     @Test
     @DisplayName("Get All Commits")
     void getCommits() {
-        List<CommitData> commits = commitService.getCommits("gentlero", "bitbucket-api");
+        List<CommitData> commits = commitService.getPagesCommits("https://api.bitbucket.org/2.0/repositories/gentlero/bitbucket-api/commits", 5,2);
         assertNotNull(commits);
         assertFalse(commits.isEmpty());
         System.out.println(commits);

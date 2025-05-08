@@ -20,19 +20,11 @@ class IssueServiceTest {
     @Test
     @DisplayName("Get All Issues")
     void getAllIssues() {
-        List<IssueData> issues = issueService.getIssues("gentlero", "bitbucket-api");
+        List<IssueData> issues = issueService.getIssues("https://api.bitbucket.org/2.0/repositories/gentlero/bitbucket-api/issues", 5,2);
         assertNotNull(issues);
         assertFalse(issues.isEmpty());
         System.out.println(issues);
         System.out.println(issues.size());
-    }
-
-    @Test
-    @DisplayName("Get IssueList")
-    void getIssue() {
-        IssueList issue = issueService.getIssue("gentlero", "bitbucket-api");
-        assertNotNull(issue);
-        System.out.println(issue);
     }
 
     @Test

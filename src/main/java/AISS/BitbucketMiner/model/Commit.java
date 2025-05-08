@@ -1,5 +1,7 @@
 package AISS.BitbucketMiner.model;
 
+import AISS.BitbucketMiner.model.ProjectData.ProjectData;
+
 public class Commit {
 
     private String id;
@@ -40,4 +42,43 @@ public class Commit {
 
     public String getWeb_url() { return web_url; }
     public void setWeb_url(String web_url) { this.web_url = web_url; }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ProjectData.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("id");
+        sb.append('=');
+        sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(',');
+        sb.append("Title");
+        sb.append('=');
+        sb.append(((this.title == null)?"<null>":this.title));
+        sb.append(',');
+        sb.append("Message");
+        sb.append('=');
+        sb.append(((this.message == null)?"<null>":this.message));
+        sb.append(',');
+        sb.append("Author_name");
+        sb.append('=');
+        sb.append(((this.author_name == null)?"<null>":this.author_name));
+        sb.append(',');
+        sb.append("Author_email");
+        sb.append('=');
+        sb.append(((this.author_email == null)?"<null>":this.author_email));
+        sb.append(',');
+        sb.append("Authored_date");
+        sb.append('=');
+        sb.append(((this.authored_date == null)?"<null>":this.authored_date));
+        sb.append(',');
+        sb.append("Web_url");
+        sb.append('=');
+        sb.append(((this.web_url == null)?"<null>":this.web_url));
+        sb.append(',');
+        if (sb.charAt((sb.length()- 1)) == ',') {
+            sb.setCharAt((sb.length()- 1), ']');
+        } else {
+            sb.append(']');
+        }
+        return sb.toString();
+    }
 }

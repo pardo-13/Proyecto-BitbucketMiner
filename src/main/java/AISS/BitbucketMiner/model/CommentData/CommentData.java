@@ -15,7 +15,7 @@ public class CommentData {
     @JsonProperty("created_on")
     private String createdOn;
     @JsonProperty("updated_on")
-    private Object updatedOn;
+    private String updatedOn;
     @JsonProperty("content")
     private Content content;
     @JsonProperty("user")
@@ -56,12 +56,12 @@ public class CommentData {
     }
 
     @JsonProperty("updated_on")
-    public Object getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
     @JsonProperty("updated_on")
-    public void setUpdatedOn(Object updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 

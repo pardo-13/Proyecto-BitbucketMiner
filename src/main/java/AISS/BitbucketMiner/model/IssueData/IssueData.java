@@ -24,7 +24,7 @@ public class IssueData {
     @JsonProperty("reporter")
     private Reporter reporter;
     @JsonProperty("assignee")
-    private Object assignee;
+    private Assignee assignee;
     @JsonProperty("created_on")
     private String createdOn;
     @JsonProperty("edited_on")
@@ -109,12 +109,12 @@ public class IssueData {
     }
 
     @JsonProperty("assignee")
-    public Object getAssignee() {
+    public Assignee getAssignee() {
         return assignee;
     }
 
     @JsonProperty("assignee")
-    public void setAssignee(Object assignee) {
+    public void setAssignee(Assignee assignee) {
         this.assignee = assignee;
     }
 

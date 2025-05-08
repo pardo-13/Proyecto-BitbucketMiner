@@ -28,7 +28,7 @@ class CommentServiceTest {
     @Test
     @DisplayName("Get All Comments")
     void getAllComments() {
-        List<CommentData> comments = commentService.getAllComments("gentlero","bitbucket-api", "87");
+        List<CommentData> comments = commentService.getAllComments("https://api.bitbucket.org/2.0/repositories/gentlero/bitbucket-api/issues/87/comments");
         assertNotNull(comments);
         assertFalse(comments.isEmpty());
         System.out.println(comments);

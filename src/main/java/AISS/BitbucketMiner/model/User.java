@@ -1,5 +1,7 @@
 package AISS.BitbucketMiner.model;
 
+import AISS.BitbucketMiner.model.ProjectData.ProjectData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +12,6 @@ public class User {
     private String name;
     private String avatar_url;
     private String web_url;
-    private List<Issue> assigned_issues;
-    private List<Issue> authored_issues;
-    private List<Comment> comments;
 
     public User() {}
     public User( String id, String username, String name, String avatar_url, String web_url) {
@@ -21,9 +20,6 @@ public class User {
         this.name = name;
         this.avatar_url = avatar_url;
         this.web_url = web_url;
-        this.assigned_issues = new ArrayList<>();
-        this.authored_issues = new ArrayList<>();
-        this.comments = new ArrayList<>();
     }
 
     public String getId() { return id; }
@@ -41,14 +37,35 @@ public class User {
     public String getWeb_url() { return web_url; }
     public void setWeb_url(String web_url) { this.web_url = web_url; }
 
-    public List<Issue> getAssigned_issues() { return assigned_issues; }
-    public void setAssigned_issues(List<Issue> assigned_issues) { this.assigned_issues = assigned_issues; }
-
-    public List<Issue> getAuthored_issues() { return authored_issues; }
-    public void setAuthored_issues(List<Issue> authored_issues) { this.authored_issues = authored_issues; }
-
-
-    public List<Comment> getComments() { return comments; }
-    public void setComments(List<Comment> comments) { this.comments = comments; }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ProjectData.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("id");
+        sb.append('=');
+        sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(',');
+        sb.append("Username");
+        sb.append('=');
+        sb.append(((this.username == null)?"<null>":this.username));
+        sb.append(',');
+        sb.append("name");
+        sb.append('=');
+        sb.append(((this.name == null)?"<null>":this.name));
+        sb.append(',');
+        sb.append("Avatar_url");
+        sb.append('=');
+        sb.append(((this.avatar_url == null)?"<null>":this.avatar_url));
+        sb.append(',');
+        sb.append(" Web_url");
+        sb.append('=');
+        sb.append(((this.web_url == null)?"<null>":this.web_url));
+        sb.append(',');
+        if (sb.charAt((sb.length()- 1)) == ',') {
+            sb.setCharAt((sb.length()- 1), ']');
+        } else {
+            sb.append(']');
+        }
+        return sb.toString();
+    }
 
 }

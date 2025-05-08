@@ -4,6 +4,10 @@ import AISS.BitbucketMiner.model.IssueData.IssueData;
 import AISS.BitbucketMiner.model.IssueData.IssueList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,18 +25,23 @@ public class IssueService {
     @Value("${bitbucketminer.baseuri}")
     private String baseuri;
 
-    public List<IssueData> getIssues(String workspace, String repo) {
-        List<IssueData> issues = null;
-        String uri = baseuri + workspace + "/" + repo + "/issues";
-        IssueList issueList = restTemplate.getForObject(uri, IssueList.class);
-        issues = issueList.getIssuesData();
+    public List<IssueData> getIssues(String uri, Integer nIssues, Integer maxPages) {
+        List<IssueData> issues = new ArrayList<>();
+        int page = 1;
+        String issueUri = uri +"?pagelen="+nIssues+ "&page="+ page;
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<IssueList> request = new HttpEntity<>(null, headers);
+        ResponseEntity<IssueList> response = restTemplate.exchange(issueUri, HttpMethod.GET, request, IssueList.class);
+        IssueList issueList = response.getBody();
+        issues.addAll(issueList.getIssuesData());
+        while (page < maxPages && issueList.getNext() != null) {
+            page++;
+            issueUri = uri+"?pagelen="+nIssues+ "&page="+ page;
+            response = restTemplate.exchange(issueUri, HttpMethod.GET, request, IssueList.class);
+            issueList = response.getBody();
+            issues.addAll(issueList.getIssuesData());
+        }
         return issues;
-    }
-
-    public IssueList getIssue(String workspace, String repo) {
-        String uri = baseuri + workspace + "/" + repo + "/issues";
-        IssueList issueList = restTemplate.getForObject(uri, IssueList.class);
-        return issueList;
     }
 
     public List<IssueData> getAllIssues(String workspace, String repo) {

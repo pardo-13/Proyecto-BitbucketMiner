@@ -31,13 +31,13 @@ public class CommentService {
         return comments;
     }
 
-    public List<CommentData> getAllComments(String workspace, String repo, String id) {
+    public List<CommentData> getAllComments(String uri) {
         List<CommentData> comments = new ArrayList<>();
-        String uri = baseuri + workspace + "/" + repo + "/issues/" + id + "/comments";
+        String commentUri = uri;
         CommentList commentList = restTemplate.getForObject(uri, CommentList.class);
         comments.addAll(commentList.getCommentsData());
         while(commentList.getNext() != null) {
-            uri = commentList.getNext();
+            commentUri = commentList.getNext();
             commentList = restTemplate.getForObject(uri, CommentList.class);
             comments.addAll(commentList.getCommentsData());
         }
