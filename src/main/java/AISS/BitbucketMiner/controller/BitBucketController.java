@@ -22,7 +22,7 @@ public class BitBucketController {
     private final String gitMinerUri = "http://localhost:8080";
 
 
-    //GET http://localhost:8081/workspace/repo
+    //GET http://localhost:8081/bitbucket/workspace/repo
     @GetMapping("/{workspace}/{repo}")
     public Project getProject(@PathVariable String workspace, @PathVariable String repo,
                               @RequestParam(defaultValue= "5") Integer nCommits,
@@ -31,7 +31,7 @@ public class BitBucketController {
         return transformation.getProject(workspace, repo, nCommits, nIssues, maxPages);
     }
 
-    //POST http://localhost:8081/workspace/repo
+    //POST http://localhost:8081/bitbucket/workspace/repo
     @PostMapping("/{workspace}/{repo}")
     public Project sendProject(@PathVariable String workspace, @PathVariable String repo,
                                @RequestParam(defaultValue= "5") Integer nCommits,
