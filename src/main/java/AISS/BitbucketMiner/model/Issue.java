@@ -1,39 +1,41 @@
 package AISS.BitbucketMiner.model;
 
 import AISS.BitbucketMiner.model.ProjectData.ProjectData;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Issue {
 
+    @JsonProperty("id")
     private String id;
+    @JsonProperty("title")
     private String title;
+    @JsonProperty("description")
     private String description;
+    @JsonProperty("state")
     private String state;
-    private String created_at;
-    private String updated_at;
-    private String closed_at;
+    @JsonProperty("created_at")
+    private String createdAt;
+    @JsonProperty("updated_at")
+    private String updatedAt;
+    @JsonProperty("closed_at")
+    private String closedAt;
+    @JsonProperty("labels")
     private List<String> labels;
+    @JsonProperty("votes")
     private Integer votes;
+    @JsonProperty("comments")
     private List<Comment> comments;
+    @JsonProperty("author")
     private User author;
+    @JsonProperty("assignee")
     private User assignee;
 
-    public Issue() {}
-    public Issue( String id, String title, String description, String state, String created_at, String updated_at, String closed_at, List<String> labels, Integer votes) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.state = state;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.closed_at = closed_at;
-        this.labels = labels;
-        this.votes = votes;
+    public Issue() {
+        this.labels = new ArrayList<>();
         this.comments = new ArrayList<>();
-        this.author = null;
-        this.assignee = null;
     }
 
     public String getId() { return id; }
@@ -48,14 +50,14 @@ public class Issue {
     public String getState() { return state; }
     public void setState(String state) { this.state = state; }
 
-    public String getCreated_at() { return created_at; }
-    public void setCreated_at(String created_at) { this.created_at = created_at; }
+    public String getCreated_at() { return createdAt; }
+    public void setCreated_at(String created_at) { this.createdAt = created_at; }
 
-    public String getUpdated_at() { return updated_at; }
-    public void setUpdated_at(String updated_at) { this.updated_at = updated_at; }
+    public String getUpdated_at() { return updatedAt; }
+    public void setUpdated_at(String updated_at) { this.updatedAt = updated_at; }
 
-    public String getClosed_at() { return closed_at; }
-    public void setClosed_at(String closed_at) { this.closed_at = closed_at; }
+    public String getClosed_at() { return closedAt; }
+    public void setClosed_at(String closed_at) { this.closedAt = closed_at; }
 
     public List<String> getLabels() { return labels; }
     public void setLabels(List<String> labels) { this.labels = labels; }
@@ -92,15 +94,15 @@ public class Issue {
         sb.append(',');
         sb.append("Created_at");
         sb.append('=');
-        sb.append(((this.created_at == null)?"<null>":this.created_at));
+        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
         sb.append(',');
         sb.append("Updated_at");
         sb.append('=');
-        sb.append(((this.updated_at == null)?"<null>":this.updated_at));
+        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
         sb.append(',');
         sb.append("Closed_at");
         sb.append('=');
-        sb.append(((this.closed_at == null)?"<null>":this.closed_at));
+        sb.append(((this.closedAt == null)?"<null>":this.closedAt));
         sb.append(',');
         sb.append("Labels");
         sb.append('=');

@@ -1,23 +1,22 @@
 package AISS.BitbucketMiner.model;
 
 import AISS.BitbucketMiner.model.ProjectData.ProjectData;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Comment {
 
+    @JsonProperty("id")
     private String id;
+    @JsonProperty("body")
     private String body;
-    private String created_at;
-    private String updated_at;
+    @JsonProperty("created_at")
+    private String createdAt;
+    @JsonProperty("updated_at")
+    private String updatedAt;
+    @JsonProperty("author")
     private User author;
 
     public Comment() {}
-    public Comment(String id, String body, String created_at, String updated_at) {
-        this.id = id;
-        this.body = body;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.author = null;
-    }
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -25,11 +24,11 @@ public class Comment {
     public String getBody() { return body; }
     public void setBody(String body) { this.body = body; }
 
-    public String getCreated_at() { return created_at; }
-    public void setCreated_at(String created_at) { this.created_at = created_at; }
+    public String getCreated_at() { return createdAt; }
+    public void setCreated_at(String created_at) { this.createdAt = created_at; }
 
-    public String getUpdated_at() { return updated_at; }
-    public void setUpdated_at(String updated_at) { this.updated_at = updated_at; }
+    public String getUpdated_at() { return updatedAt; }
+    public void setUpdated_at(String updated_at) { this.updatedAt = updated_at; }
 
     public User getAuthor() { return author; }
     public void setAuthor(User author) { this.author = author; }
@@ -47,11 +46,11 @@ public class Comment {
         sb.append(',');
         sb.append("Created_at");
         sb.append('=');
-        sb.append(((this.created_at == null)?"<null>":this.created_at));
+        sb.append(((this.createdAt == null)?"<null>":this.createdAt));
         sb.append(',');
         sb.append("Updated_at");
         sb.append('=');
-        sb.append(((this.updated_at == null)?"<null>":this.updated_at));
+        sb.append(((this.updatedAt == null)?"<null>":this.updatedAt));
         sb.append(',');
         sb.append("Author");
         sb.append('=');

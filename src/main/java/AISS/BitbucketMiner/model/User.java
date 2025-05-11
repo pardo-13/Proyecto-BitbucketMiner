@@ -1,26 +1,25 @@
 package AISS.BitbucketMiner.model;
 
 import AISS.BitbucketMiner.model.ProjectData.ProjectData;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
 
+    @JsonProperty("id")
     private String id;
+    @JsonProperty("username")
     private String username;
+    @JsonProperty("name")
     private String name;
-    private String avatar_url;
-    private String web_url;
+    @JsonProperty("avatar_url")
+    private String avatarUrl;
+    @JsonProperty("web_url")
+    private String webUrl;
 
     public User() {}
-    public User( String id, String username, String name, String avatar_url, String web_url) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.avatar_url = avatar_url;
-        this.web_url = web_url;
-    }
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -31,11 +30,11 @@ public class User {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getAvatar_url() { return avatar_url; }
-    public void setAvatar_url(String avatar_url) { this.avatar_url = avatar_url; }
+    public String getAvatar_url() { return avatarUrl; }
+    public void setAvatar_url(String avatar_url) { this.avatarUrl = avatar_url; }
 
-    public String getWeb_url() { return web_url; }
-    public void setWeb_url(String web_url) { this.web_url = web_url; }
+    public String getWeb_url() { return webUrl; }
+    public void setWeb_url(String web_url) { this.webUrl = web_url; }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -54,11 +53,11 @@ public class User {
         sb.append(',');
         sb.append("Avatar_url");
         sb.append('=');
-        sb.append(((this.avatar_url == null)?"<null>":this.avatar_url));
+        sb.append(((this.avatarUrl == null)?"<null>":this.avatarUrl));
         sb.append(',');
         sb.append(" Web_url");
         sb.append('=');
-        sb.append(((this.web_url == null)?"<null>":this.web_url));
+        sb.append(((this.webUrl == null)?"<null>":this.webUrl));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
