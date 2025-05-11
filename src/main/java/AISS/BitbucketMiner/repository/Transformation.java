@@ -102,7 +102,11 @@ public class Transformation {
         for(CommentData commentData : data){
             Comment comment = new Comment();
             comment.setId(commentData.getId().toString());
-            comment.setBody(commentData.getContent().getRaw());
+            if(commentData.getContent().getRaw() == null){
+                comment.setBody("-");
+            } else {
+                comment.setBody(commentData.getContent().getRaw());
+            }
             comment.setCreated_at(commentData.getCreatedOn());
             comment.setUpdated_at(commentData.getUpdatedOn());
             comment.setAuthor(getCommentAuthor(commentData.getUser()));
